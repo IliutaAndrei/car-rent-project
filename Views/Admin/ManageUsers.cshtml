@@ -1,0 +1,28 @@
+﻿@model List<Microsoft.AspNetCore.Identity.IdentityUser>
+@{
+    ViewData["Title"] = "Gestionează Utilizatori";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Gestionează Utilizatori</h1>
+
+@if (Model != null && Model.Any())
+{
+    <ul>
+        @foreach (var user in Model)
+        {
+            <li>
+                @user.UserName (@user.Email)
+                <form method="post" asp-action="BlockUser" asp-route-id="@user.Id" style="display:inline;">
+                    <button type="submit" class="btn btn-warning btn-sm">Blochează</button>
+                </form>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Nu există utilizatori în sistem.</p>
+}
+
+<a asp-action="Index">Înapoi la Panou</a>

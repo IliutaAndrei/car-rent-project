@@ -1,0 +1,75 @@
+﻿@model CarRent.Models.Car
+
+@{
+    ViewData["Title"] = "Adaugă o Mașină Nouă";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; 
+}
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="page-title">
+            <h4>@ViewData["Title"]</h4>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        @if (TempData["ErrorMessage"] != null)
+                        {
+                            <div class="alert alert-danger">
+                                @TempData["ErrorMessage"]
+                            </div>
+                        }
+
+                        <form method="post" asp-action="AddCar" asp-controller="Admin">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Make">Marcă:</label>
+                                <input asp-for="Make" class="form-control" required>
+                                <span asp-validation-for="Make" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Model">Model:</label>
+                                <input asp-for="Model" class="form-control" required>
+                                <span asp-validation-for="Model" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="YearOfFabrication">An:</label>
+                                <input asp-for="YearOfFabrication" class="form-control" type="number" required>
+                                <span asp-validation-for="YearOfFabrication" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FuelType">Tip combustibil:</label>
+                                <select asp-for="FuelType" class="form-control" asp-items="Html.GetEnumSelectList<FuelType>()">
+                                    <option value="">Selectați...</option>
+                                </select>
+                                <span asp-validation-for="FuelType" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TransmissionType">Transmisie:</label>
+                                <select asp-for="TransmissionType" class="form-control" asp-items="Html.GetEnumSelectList<TransmissionType>()">
+                                    <option value="">Selectați...</option>
+                                </select>
+                                <span asp-validation-for="TransmissionType" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-check">
+                                <input asp-for="IsAvailable" class="form-check-input">
+                                <label asp-for="IsAvailable" class="form-check-label">Disponibilă</label>
+                                <span asp-validation-for="IsAvailable" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PricePerDay">Preț/Zi:</label>
+                                <input asp-for="PricePerDay" class="form-control" type="number" step="0.01" required>
+                                <span asp-validation-for="PricePerDay" class="text-danger"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Adaugă Mașină</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

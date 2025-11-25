@@ -1,0 +1,155 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Panou de Administrare";
+}
+
+<div class="admin-container">
+    <div class="admin-header">
+        <h1>Panou de Administrare</h1>
+     
+    </div>
+
+    <div class="admin-cards">
+        <div class="admin-card">
+            <div class="card-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="card-content">
+                <h3>Gestionează Utilizatori</h3>
+                <p>Administrează conturile utilizatorilor, setează roluri și permisiuni.</p>
+                <a asp-action="ManageUsers" class="admin-btn">Accesează</a>
+            </div>
+        </div>
+
+        <div class="admin-card">
+            <div class="card-icon">
+                <i class="fas fa-car"></i>
+            </div>
+            <div class="card-content">
+                <h3>Gestionează Mașini</h3>
+                <p>Vizualizează, adaugă, modifică sau șterge autoturismele din flotă.</p>
+                <a asp-action="ManageCars" class="admin-btn">Accesează</a>
+            </div>
+        </div>
+
+        <div class="admin-card">
+            <div class="card-icon">
+                <i class="fas fa-plus-circle"></i>
+            </div>
+            <div class="card-content">
+                <h3>Adaugă Mașină</h3>
+                <p>Adaugă un nou autoturism în baza de date a aplicației.</p>
+                <a asp-action="AddCar" class="admin-btn">Accesează</a>
+            </div>
+        </div>
+
+        <div class="admin-card">
+            <div class="card-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="card-content">
+                <h3>Gestionează Rezervarile</h3>
+                <p>Administrează rezervările și programările efectuate în sistem.</p>
+                <a asp-action="ManageBookings" class="admin-btn">Accesează</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .admin-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .admin-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+        .admin-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .admin-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+    .admin-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    .admin-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .admin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+    .card-icon {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+        padding: 25px 0;
+        text-align: center;
+    }
+
+        .card-icon i {
+            font-size: 3rem;
+        }
+
+    .card-content {
+        padding: 25px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .card-content h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card-content p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+    .admin-btn {
+        display: inline-block;
+        background: #007bff;
+        color: white !important;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+        text-align: center;
+        font-weight: 500;
+    }
+
+        .admin-btn:hover {
+            background: #0056b3;
+            text-decoration: none;
+        }
+</style>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+}

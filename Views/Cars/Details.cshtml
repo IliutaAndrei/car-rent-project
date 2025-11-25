@@ -1,0 +1,27 @@
+﻿@model CarRent.Models.Car
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Detalii Mașină</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="card-title">@Model.Make @Model.Model</h2>
+                            <p class="card-text"><strong>Anul Fabricației:</strong> @Model.YearOfFabrication</p>
+                            <p class="card-text"><strong>Tip Combustibil:</strong> @Model.FuelType</p>
+                            <p class="card-text"><strong>Tip Transmisie:</strong> @Model.TransmissionType</p>
+                            <p class="card-text"><strong>Disponibilă:</strong> @(Model.IsAvailable ? "Da" : "Nu")</p>
+                            <p class="card-text"><strong>Preț pe Zi:</strong> <span class="text-danger font-weight-bold">@Model.PricePerDay RON/zi</span></p>
+                        </div>
+                    </div>
+                    <div class="mt-4" style="display: flex; justify-content: center; gap: 20px;">
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Înapoi la listă</a>
+                        <a asp-action="Rent" asp-controller="Cars" asp-route-id="@Model.Id" class="btn btn-success">Închiriază Mașina</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

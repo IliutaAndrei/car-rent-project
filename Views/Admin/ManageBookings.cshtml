@@ -1,0 +1,43 @@
+﻿@model List<CarRent.Models.Order>
+@{
+    ViewData["Title"] = "Gestionează Rezervări";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Gestionează Rezervări</h1>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID Rezervare</th>
+                <th>Mașină ID</th>
+                <th>Data Comenzii</th>
+                <th>Data Returnării</th>
+                <th>Preț</th>
+                <th>Acțiuni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model)
+            {
+                <tr>
+                    <td>@booking.OrderID</td>
+                    <td>@booking.CarID</td>
+                    <td>@booking.OrderDate</td>
+                    <td>@booking.ReturnDate</td>
+                    <td>@booking.Price</td>
+                    <td>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nu există rezervări în sistem.</p>
+}
+
+<a asp-action="Index">Înapoi la Panou</a>

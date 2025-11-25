@@ -1,0 +1,65 @@
+﻿@model List<CarRent.Models.Car>
+@{
+    ViewData["Title"] = "Gestionează Mașini";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="page-title">
+            <h4>@ViewData["Title"]</h4>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <a asp-action="AddCar" class="btn btn-primary mb-3">Adaugă Mașină Nouă</a>
+                        @if (Model != null && Model.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Marcă</th>
+                                            <th>Model</th>
+                                            <th>An</th>
+                                            <th>Tip Combustibil</th>
+                                            <th>Transmisie</th>
+                                            <th>Disponibilă</th>
+                                            <th>Preț/Zi</th>
+                                            <th>Acțiuni</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var car in Model)
+                                        {
+                                            <tr>
+                                                <td>@car.Make</td>
+                                                <td>@car.Model</td>
+                                                <td>@car.YearOfFabrication</td>
+                                                <td>@car.FuelType</td>
+                                                <td>@car.TransmissionType</td>
+                                                <td>@car.IsAvailable</td>
+                                                <td>@car.PricePerDay</td>
+                                                <td>
+                                                    <a asp-action="EditCar" asp-route-id="@car.Id" class="btn btn-sm btn-primary">Editare</a>
+                                                    <form method="post" asp-action="DeleteCar" asp-route-id="@car.Id" style="display: inline-block;">
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Sigur dorești să ștergi această mașină?')">Ștergere</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <p>Nu există mașini de afișat.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

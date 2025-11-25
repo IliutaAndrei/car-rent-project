@@ -1,0 +1,43 @@
+﻿@model CarRent.Models.Car
+
+@{
+    ViewData["Title"] = "Închiriază Mașină";
+}
+
+<h1 class="text-center mb-4">Confirmă Închirierea</h1>
+
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+    <div class="card-body">
+        <h4 class="card-title">Detalii Mașină</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4">Marcă:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Make)</dd>
+            <dt class="col-sm-4">Model:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Model)</dd>
+            <dt class="col-sm-4">Anul Fabricației:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.YearOfFabrication)</dd>
+            <dt class="col-sm-4">Tip Combustibil:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.FuelType)</dd>
+            <dt class="col-sm-4">Tip Transmisie:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.TransmissionType)</dd>
+            <dt class="col-sm-4">Disponibilitate:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.IsAvailable)</dd>
+            <dt class="col-sm-4">Preț pe Zi:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PricePerDay) RON/zi</dd>
+        </dl>
+        <div class="mt-4 d-flex justify-content-center gap-2">
+            <form asp-action="Rent" asp-route-id="@Model.Id" method="post">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-success">Confirmă Închirierea</button>
+            </form>
+            <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">Anulează</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

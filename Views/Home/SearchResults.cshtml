@@ -1,0 +1,34 @@
+﻿@model List<CarRent.Models.Car>
+
+@{
+    ViewData["Title"] = "Rezultate Căutare Mașini";
+}
+
+<div class="available-cars" style="width: 100%;">
+    <h3 style="color: #333; margin-bottom: 15px; text-align: center;">Rezultatele Căutării</h3>
+    @if (Model != null && Model.Any())
+    {
+        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+            @foreach (var car in Model)
+            {
+                <div class="car-card" style="width: calc(50% - 10px); background-color: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px;">
+                    <h5 style="color: #333; margin-bottom: 5px;">@car.Make @car.Model</h5>
+                    <p style="color: #555; margin-bottom: 5px;">Preț: @car.PricePerDay.ToString("C") RON/zi</p>
+                    @if (car.IsAvailable)
+                    {
+                        <span class="badge bg-success" style="color: white; background-color: #28a745; padding: 0.25em 0.4em; border-radius: 0.25rem; font-size: 0.8em;">Disponibilă</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger" style="color: white; background-color: #dc3545; padding: 0.25em 0.4em; border-radius: 0.25rem; font-size: 0.8em;">Indisponibilă</span>
+                    }
+                    <a asp-action="Details" asp-controller="Cars" asp-route-id="@car.Id" class="btn btn-sm btn-outline-primary" style="text-decoration: none; padding: 8px 12px; border-radius: 4px; border: 1px solid #007bff; color: #007bff; font-size: 0.9em; margin-top: 5px;">Detalii</a>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p style="color: #555; text-align: center;">Nicio mașină nu corespunde criteriilor de căutare.</p>
+    }
+</div>
